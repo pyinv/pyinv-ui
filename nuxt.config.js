@@ -68,6 +68,7 @@ export default {
           user: { url: '/accounts/profile/', method: 'get' },
           logout: false,
         },
+        autoLogout: true,
         redirect: {
           login: '/login',
           logout: '/',
