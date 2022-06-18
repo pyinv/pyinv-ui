@@ -43,7 +43,14 @@
         {{ props.row.depth }}
       </b-table-column>
 
-      <b-table-column label="Actions"> Bees </b-table-column>
+      <b-table-column label="Actions" v-slot="props">
+        <b-button
+          size="is-small"
+          tag="router-link"
+          :to="{ name: 'nodes-uuid', params: { uuid: props.row.id } }"
+          >View</b-button
+        >
+      </b-table-column>
     </b-table>
   </section>
 </template>

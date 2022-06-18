@@ -6,7 +6,9 @@
       </b-navbar-item>
     </template>
     <template #start>
-      <b-navbar-item href="#"> Assets </b-navbar-item>
+      <b-navbar-item tag="router-link" :to="{ path: '/' }">
+        Assets
+      </b-navbar-item>
       <b-navbar-item href="#"> Asset Models </b-navbar-item>
       <b-navbar-item href="#"> Manufacturers </b-navbar-item>
       <b-navbar-dropdown label="Other">
