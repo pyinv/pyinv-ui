@@ -8,8 +8,10 @@
 <script>
 export default {
   async asyncData({ $axios }) {
-    var nodes = await $axios.$get('/nodes/?limit=30&parent=root&node_type=L&ordering=name');
+    var nodes = await $axios.$get(
+      '/nodes/?limit=30&parent=root&node_type=L&ordering=name'
+    )
     return { nodes }
-  }
+  },
 }
 </script>
