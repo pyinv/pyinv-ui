@@ -18,7 +18,12 @@
       @sort="onSort"
     >
       <b-table-column field="display_name" label="Name" sortable v-slot="props">
-        {{ props.row.display_name }}
+        <router-link
+          :to="{ name: 'nodes-uuid', params: { uuid: props.row.id } }"
+        >
+          <node-icon :node="props.row" size="is-small" />
+          {{ props.row.display_name }}
+        </router-link>
       </b-table-column>
 
       <b-table-column
@@ -56,7 +61,9 @@
 </template>
 
 <script>
+import NodeIcon from './NodeIcon.vue'
 export default {
+  components: { NodeIcon },
   props: {
     parent: {
       type: String,
