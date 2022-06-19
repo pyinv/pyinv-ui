@@ -3,7 +3,6 @@
     <h1 class="title is-1">
       {{ node.display_name }}
     </h1>
-    <p v-if="node.asset">{{ node.asset.first_asset_code }}</p>
     <node-breadcrumbs :node="node" />
     <node-info :node="node" />
     <node-table v-if="node.numchild > 0" :parent="node.id" />

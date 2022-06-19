@@ -6,7 +6,9 @@
 export default {
   computed: {
     icon() {
-      return this.node.node_type == 'A' ? 'cube' : 'folder'
+      if (this.node.node_type == 'L') return 'folder'
+  
+      return this.node.is_container ? 'cube' : 'cube-outline'
     },
   },
   props: {
