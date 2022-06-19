@@ -6,7 +6,6 @@
     <b-field label="Slug">
       <b-input v-model="manufacturer.slug" disabled></b-input>
     </b-field>
-    <manufacturer-link-button :manufacturer="manufacturer" text="Back" />
     <b-button @click="submit">Update</b-button>
   </section>
 </template>
