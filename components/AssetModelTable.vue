@@ -18,14 +18,19 @@
       @sort="onSort"
     >
       <b-table-column field="name" label="Name" sortable v-slot="props">
-        {{ props.row.name }}
+        <asset-model-link-text :model="props.row" />
       </b-table-column>
 
       <b-table-column field="manufacturer" label="Manufacturer" v-slot="props">
         <manufacturer-link-text :manufacturer="props.row.manufacturer" />
       </b-table-column>
 
-      <b-table-column field="asset_count" label="Number of Assets" sortable v-slot="props">
+      <b-table-column
+        field="asset_count"
+        label="Number of Assets"
+        sortable
+        v-slot="props"
+      >
         {{ props.row.asset_count }}
       </b-table-column>
 
@@ -42,9 +47,10 @@
 </template>
 
 <script>
+import AssetModelLinkText from './AssetModelLinkText.vue'
 import ManufacturerLinkText from './ManufacturerLinkText.vue'
 export default {
-  components: { ManufacturerLinkText },
+  components: { ManufacturerLinkText, AssetModelLinkText },
   props: {
     manufacturer: {
       type: Object,
