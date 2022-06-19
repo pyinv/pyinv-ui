@@ -29,17 +29,17 @@
         <b-button
           size="is-small"
           tag="router-link"
+          :to="{ name: 'manufacturers-slug', params: { slug: props.row.slug } }"
+          >View</b-button
+        >
+        <b-button
+          size="is-small"
+          tag="router-link"
           :to="{
             name: 'manufacturers-slug-edit',
             params: { slug: props.row.slug },
           }"
           >Edit</b-button
-        >
-        <b-button
-          size="is-small"
-          tag="router-link"
-          :to="{ name: 'manufacturers-slug', params: { slug: props.row.slug } }"
-          >View</b-button
         >
       </b-table-column>
     </b-table>
