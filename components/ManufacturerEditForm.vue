@@ -3,6 +3,9 @@
     <b-field label="Name">
       <b-input v-model="manufacturer.name"></b-input>
     </b-field>
+    <b-field label="Slug">
+      <b-input v-model="manufacturer.slug" disabled></b-input>
+    </b-field>
     <manufacturer-link-button :manufacturer="manufacturer" text="Back" />
     <b-button @click="submit">Update</b-button>
   </section>
