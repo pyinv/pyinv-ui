@@ -18,7 +18,11 @@
       @sort="onSort"
     >
       <b-table-column field="name" label="Name" sortable v-slot="props">
-        {{ props.row.name }}
+        <router-link
+          :to="{ name: 'manufacturers-slug', params: { slug: props.row.slug } }"
+        >
+          {{ props.row.name }}
+        </router-link>
       </b-table-column>
 
       <b-table-column label="Actions" v-slot="props">
