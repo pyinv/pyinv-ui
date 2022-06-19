@@ -9,12 +9,12 @@
       <b-navbar-item tag="router-link" :to="{ path: '/' }">
         Assets
       </b-navbar-item>
-      <b-navbar-item href="#"> Asset Models </b-navbar-item>
-      <b-navbar-item href="#"> Manufacturers </b-navbar-item>
-      <b-navbar-dropdown label="Other">
-        <b-navbar-item href="#"> Asset Codes </b-navbar-item>
-        <b-navbar-item href="#"> Reports </b-navbar-item>
-      </b-navbar-dropdown>
+      <b-navbar-item tag="router-link" :to="{ name: 'models' }">
+        Asset Models
+      </b-navbar-item>
+      <b-navbar-item tag="router-link" :to="{ name: 'manufacturers' }">
+        Manufacturers
+      </b-navbar-item>
     </template>
 
     <template #end>

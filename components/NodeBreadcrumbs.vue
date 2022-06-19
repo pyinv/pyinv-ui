@@ -7,13 +7,14 @@
         :key="ancestor.id"
         tag="router-link"
         :to="{ name: 'nodes-uuid', params: { uuid: ancestor.id } }"
-        ><node-icon :node="ancestor" size="is-small" />{{ ancestor.display_name }}</b-breadcrumb-item
+        ><node-icon :node="ancestor" size="is-small" />{{
+          ancestor.display_name
+        }}</b-breadcrumb-item
       >
-      <b-breadcrumb-item
-        tag="router-link"
-        to="/documentation/breadcrumb"
-        active
-        ><node-icon :node="node" size="is-small" />{{ node.display_name }}</b-breadcrumb-item
+      <b-breadcrumb-item tag="router-link" to="/documentation/breadcrumb" active
+        ><node-icon :node="node" size="is-small" />{{
+          node.display_name
+        }}</b-breadcrumb-item
       >
     </b-breadcrumb>
   </section>
