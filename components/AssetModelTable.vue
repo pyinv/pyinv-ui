@@ -46,6 +46,11 @@ import ManufacturerLinkText from './ManufacturerLinkText.vue'
 export default {
   components: { ManufacturerLinkText },
   props: {
+    manufacturer: {
+      type: Object,
+      required: false,
+      default: null,
+    },
     perPage: {
       type: Number,
       default: 25,
@@ -72,6 +77,9 @@ export default {
             limit: this.perPage,
             offset: (this.page - 1) * this.perPage,
             ordering: this.sortString,
+
+            // Filters
+            manufacturer: this.manufacturer ? this.manufacturer.slug : null,
           },
         })
         .then((response) => {
