@@ -40,6 +40,9 @@
 export default {
   middleware: ['auth'],
   auth: 'guest',
+  head: {
+    title: 'Log In | PyInv',
+  },
   data() {
     return {
       login: {

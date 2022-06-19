@@ -4,3 +4,11 @@
     <asset-model-table />
   </section>
 </template>
+
+<script>
+export default {
+  head: {
+    title: 'Asset Models | PyInv',
+  },
+}
+</script>

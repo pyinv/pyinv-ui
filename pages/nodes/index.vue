@@ -4,3 +4,11 @@
     <node-table parent="root" />
   </section>
 </template>
+
+<script>
+export default {
+  head: {
+    title: 'Assets | PyInv',
+  },
+}
+</script>

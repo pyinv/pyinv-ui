@@ -7,5 +7,8 @@
 <script>
 export default {
   middleware: ['auth'],
+  head: {
+    title: 'Settings | PyInv',
+  },
 }
 </script>

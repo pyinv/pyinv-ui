@@ -4,3 +4,11 @@
     <manufacturer-table />
   </section>
 </template>
+
+<script>
+export default {
+  head: {
+    title: 'Manufacturers | PyInv',
+  },
+}
+</script>
