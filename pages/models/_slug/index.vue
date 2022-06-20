@@ -10,15 +10,7 @@
 </template>
 
 <script>
-import AssetModelDeleteButton from '~/components/AssetModelDeleteButton.vue'
-import AssetModelEditButton from '~/components/AssetModelEditButton.vue'
-import AssetModelBreadcrumbs from '~/components/AssetModelBreadcrumbs.vue'
 export default {
-  components: {
-    AssetModelDeleteButton,
-    AssetModelEditButton,
-    AssetModelBreadcrumbs,
-  },
   async asyncData({ $axios, params }) {
     const assetModel = await $axios.$get('asset-models/' + params.slug)
     return { assetModel }

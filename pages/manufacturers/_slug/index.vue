@@ -10,12 +10,10 @@
 </template>
 
 <script>
-import ManufacturerEditButton from '~/components/ManufacturerEditButton.vue'
 export default {
   async asyncData({ $axios, params }) {
     const manufacturer = await $axios.$get('manufacturers/' + params.slug)
     return { manufacturer }
   },
-  components: { ManufacturerEditButton },
 }
 </script>

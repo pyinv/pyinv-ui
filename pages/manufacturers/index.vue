@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import ManufacturerCreateButton from '~/components/ManufacturerCreateButton.vue'
 export default {
   head: {
     title: 'Manufacturers | PyInv',
