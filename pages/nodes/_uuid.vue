@@ -11,8 +11,11 @@
 
 <script>
 export default {
-  async asyncData({ $axios, params }) {
+  async asyncData({ $axios, params, redirect }) {
     const node = await $axios.$get('nodes/' + params.uuid)
+    if (node.node_type == 'A' && node.numchild == 0) {
+      redirect({ name: 'assets-uuid', params: { uuid: node.asset.id } })
+    }
     return { node }
   },
 }

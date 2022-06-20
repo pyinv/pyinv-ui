@@ -11,7 +11,7 @@
           ancestor.display_name
         }}</b-breadcrumb-item
       >
-      <b-breadcrumb-item tag="router-link" to="/documentation/breadcrumb" active
+      <b-breadcrumb-item active
         ><node-icon :node="node" size="is-small" />{{
           node.display_name
         }}</b-breadcrumb-item

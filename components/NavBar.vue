@@ -15,6 +15,11 @@
       <b-navbar-item tag="router-link" :to="{ name: 'manufacturers' }">
         Manufacturers
       </b-navbar-item>
+      <b-navbar-dropdown label="Other">
+        <b-navbar-item tag="router-link" :to="{ name: 'assets-unknown' }">
+          Unknown Assets
+        </b-navbar-item>
+      </b-navbar-dropdown>
     </template>
 
     <template #end>

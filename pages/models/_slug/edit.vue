@@ -1,6 +1,7 @@
 <template>
   <section class="section">
     <h1 class="title is-1">Editing: {{ model.name }}</h1>
+    <asset-model-breadcrumbs :model="model" action="Edit" />
     <asset-model-edit-form @success="submitted" :model="model" />
   </section>
 </template>

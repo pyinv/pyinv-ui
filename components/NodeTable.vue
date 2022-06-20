@@ -18,12 +18,13 @@
       @sort="onSort"
     >
       <b-table-column field="display_name" label="Name" sortable v-slot="props">
-        <router-link
-          :to="{ name: 'nodes-uuid', params: { uuid: props.row.id } }"
-        >
-          <node-icon :node="props.row" size="is-small" />
-          {{ props.row.display_name }}
-        </router-link>
+        <asset-link-text
+          v-if="props.row.asset && props.row.numchild == 0"
+          :asset="props.row.asset"
+          :text="props.row.display_name"
+          icon
+        />
+        <node-link-text v-else :node="props.row" />
       </b-table-column>
 
       <b-table-column
@@ -34,7 +35,10 @@
         v-slot="props"
       >
         <span class="tag">
-          {{ props.row.numchild }}
+          <template v-if="props.row.is_container">{{
+            props.row.numchild
+          }}</template>
+          <template v-else>N/A</template>
         </span>
       </b-table-column>
 
@@ -49,21 +53,19 @@
       </b-table-column>
 
       <b-table-column label="Actions" v-slot="props">
-        <b-button
-          size="is-small"
-          tag="router-link"
-          :to="{ name: 'nodes-uuid', params: { uuid: props.row.id } }"
-          >View</b-button
-        >
+        <asset-link-button
+          v-if="props.row.asset && props.row.numchild == 0"
+          :asset="props.row.asset"
+          text="View"
+        />
+        <node-link-button v-else :node="props.row" text="View" />
       </b-table-column>
     </b-table>
   </section>
 </template>
 
 <script>
-import NodeIcon from './NodeIcon.vue'
 export default {
-  components: { NodeIcon },
   props: {
     parent: {
       type: String,

@@ -14,69 +14,52 @@
       aria-current-label="Current page"
       backend-sorting
       default-sort-direction="asc"
-      :default-sort="['name', 'asc']"
+      :default-sort="['updated_at', 'asc']"
       @sort="onSort"
     >
-      <b-table-column field="name" label="Name" sortable v-slot="props">
-        <asset-model-link-text :model="props.row" />
-      </b-table-column>
-
-      <b-table-column field="manufacturer" label="Manufacturer" v-slot="props">
-        <manufacturer-link-text :manufacturer="props.row.manufacturer" />
-      </b-table-column>
-
       <b-table-column
-        field="is_container"
-        label="Can Contain Items"
+        field="first_asset_code"
+        label="Asset Code"
         v-slot="props"
       >
-        {{ props.row.is_container ? 'Yes' : 'No' }}
+        {{ props.row.first_asset_code }}
+      </b-table-column>
+
+      <b-table-column field="asset_model" label="Asset Model" v-slot="props">
+        <asset-model-link-text :model="props.row.asset_model" />
+      </b-table-column>
+
+      <b-table-column field="state" label="State" v-slot="props">
+        {{ props.row.state }}
       </b-table-column>
 
       <b-table-column
-        field="asset_count"
-        label="Number of Assets"
+        field="updated_at"
+        label="Last Updated"
+        v-slot="props"
         sortable
-        v-slot="props"
       >
-        {{ props.row.asset_count }}
+        {{ props.row.updated_at }}
       </b-table-column>
 
       <b-table-column label="Actions" v-slot="props">
-        <b-button
-          size="is-small"
-          tag="router-link"
-          :to="{ name: 'models-slug', params: { slug: props.row.slug } }"
-          >View</b-button
-        >
-        <b-button
-          size="is-small"
-          tag="router-link"
-          :to="{
-            name: 'models-slug-edit',
-            params: { slug: props.row.slug },
-          }"
-          >Edit</b-button
-        >
+        <asset-link-button :asset="props.row" text="View" />
       </b-table-column>
     </b-table>
   </section>
 </template>
 
 <script>
-import AssetModelLinkText from './AssetModelLinkText.vue'
-import ManufacturerLinkText from './ManufacturerLinkText.vue'
+import AssetLinkButton from './AssetLinkButton.vue'
 export default {
-  components: { ManufacturerLinkText, AssetModelLinkText },
   props: {
-    manufacturer: {
-      type: Object,
-      required: false,
-      default: null,
-    },
     perPage: {
       type: Number,
       default: 25,
+    },
+    state: {
+      type: String,
+      default: '',
     },
   },
   data() {
@@ -84,7 +67,7 @@ export default {
       data: [],
       total: 0,
       loading: false,
-      sortString: 'name',
+      sortString: 'updated_at',
       page: 1,
     }
   },
@@ -94,16 +77,17 @@ export default {
      */
     async loadAsyncData() {
       this.loading = true
+      var params = new URLSearchParams({
+        limit: this.perPage,
+        offset: (this.page - 1) * this.perPage,
+        ordering: this.sortString,
+      })
+      for (let c of this.state.split('')) {
+        params.append('state', c)
+      }
       await this.$axios
-        .get('/asset-models/', {
-          params: {
-            limit: this.perPage,
-            offset: (this.page - 1) * this.perPage,
-            ordering: this.sortString,
-
-            // Filters
-            manufacturer: this.manufacturer ? this.manufacturer.slug : null,
-          },
+        .get('/assets/', {
+          params: params,
         })
         .then((response) => {
           this.data = response.data.results
@@ -142,5 +126,6 @@ export default {
   mounted() {
     this.loadAsyncData()
   },
+  components: { AssetLinkButton },
 }
 </script>
