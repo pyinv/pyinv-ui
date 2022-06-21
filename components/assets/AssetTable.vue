@@ -30,7 +30,20 @@
       </b-table-column>
 
       <b-table-column field="state" label="State" v-slot="props">
-        {{ props.row.state }}
+        <asset-state-string :state="props.row.state" />
+      </b-table-column>
+
+      <b-table-column
+        v-if="showLocationColumn"
+        field="node"
+        label="Location"
+        v-slot="props"
+      >
+        <node-link-text
+          v-if="props.row.node && props.row.node.parent"
+          :node="props.row.node.parent"
+        />
+        <template v-else>N/A</template>
       </b-table-column>
 
       <b-table-column
@@ -43,14 +56,21 @@
       </b-table-column>
 
       <b-table-column label="Actions" v-slot="props">
-        <asset-link-button :asset="props.row" text="View" />
+        <node-link-button
+          v-if="props.row.node && props.row.node.numchild > 0"
+          :node="props.row.node"
+          text="View"
+        />
+        <asset-link-button v-else :asset="props.row" text="View" />
       </b-table-column>
     </b-table>
   </section>
 </template>
 
 <script>
+import AssetStateString from './AssetStateString.vue'
 export default {
+  components: { AssetStateString },
   props: {
     perPage: {
       type: Number,
@@ -59,6 +79,14 @@ export default {
     state: {
       type: String,
       default: '',
+    },
+    model: {
+      type: String,
+      default: '',
+    },
+    showLocationColumn: {
+      type: Boolean,
+      default: true,
     },
   },
   data() {
@@ -77,6 +105,7 @@ export default {
     async loadAsyncData() {
       this.loading = true
       var params = new URLSearchParams({
+        asset_model: this.model,
         limit: this.perPage,
         offset: (this.page - 1) * this.perPage,
         ordering: this.sortString,

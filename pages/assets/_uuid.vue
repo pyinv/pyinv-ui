@@ -11,7 +11,7 @@
 export default {
   async asyncData({ $axios, params, redirect }) {
     const asset = await $axios.$get('assets/' + params.uuid)
-    if (asset.node.numchild != 0) {
+    if (asset.node && asset.node.numchild != 0) {
       redirect({ name: 'nodes-uuid', params: { uuid: asset.node.id } })
     }
     return { asset }

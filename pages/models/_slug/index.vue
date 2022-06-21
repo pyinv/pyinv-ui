@@ -6,6 +6,7 @@
     <asset-model-breadcrumbs :model="assetModel" />
     <asset-model-edit-button :model="assetModel" />
     <asset-model-delete-button :model="assetModel" />
+    <asset-table :model="assetModel.slug" />
   </section>
 </template>
 

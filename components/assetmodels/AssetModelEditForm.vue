@@ -6,6 +6,7 @@
     <b-field label="Slug">
       <b-input v-model="model.slug" disabled></b-input>
     </b-field>
+    <manufacturer-create-modal @manufacturerCreated="manufacturerCreated" />
     <b-field label="Manufacturer">
       <b-select
         placeholder="Select a manufacturer"
@@ -51,6 +52,10 @@ export default {
     }
   },
   methods: {
+    manufacturerCreated(slug) {
+      $nuxt.refresh()
+      this.model.manufacturer_slug = slug
+    },
     async submit() {
       try {
         await this.$axios.put(`/asset-models/${this.model.slug}/`, this.model)
