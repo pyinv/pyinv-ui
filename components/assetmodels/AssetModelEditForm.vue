@@ -6,7 +6,7 @@
     <b-field label="Slug">
       <b-input v-model="model.slug" disabled></b-input>
     </b-field>
-    <manufacturer-create-modal @manufacturerCreated="manufacturerCreated" />
+
     <b-field label="Manufacturer">
       <b-select
         placeholder="Select a manufacturer"
@@ -21,6 +21,10 @@
           {{ manufacturer.name }}
         </option>
       </b-select>
+      <manufacturer-create-modal
+        @manufacturerCreated="manufacturerCreated"
+        text="+"
+      />
     </b-field>
     <b-field label="Can Contain Assets">
       <b-switch v-model="model.is_container"></b-switch>
@@ -42,7 +46,7 @@ export default {
   }),
   async fetch() {
     try {
-      let resp = await this.$axios.get('/manufacturers/')
+      let resp = await this.$axios.get('/manufacturers/?ordering=name')
       this.manufacturers = resp.data.results // TODO: Handle pagination correctly!
     } catch (error) {
       this.$buefy.toast.open({
@@ -52,8 +56,8 @@ export default {
     }
   },
   methods: {
-    manufacturerCreated(slug) {
-      $nuxt.refresh()
+    async manufacturerCreated(slug) {
+      await this.$fetch()
       this.model.manufacturer_slug = slug
     },
     async submit() {
@@ -71,11 +75,30 @@ export default {
             type: 'is-danger',
           })
         } else {
-          this.$buefy.toast.open({
-            message: error.message,
-            type: 'is-danger',
-          })
+          if (error.response) {
+            this.handleError(error)
+          } else {
+            this.$buefy.toast.open({
+              message: error.message,
+              type: 'is-danger',
+            })
+          }
         }
+      }
+    },
+    handleError(error) {
+      if (error.response.status == 400) {
+        this.$buefy.toast.open({
+          message:
+            'Unable to update your profile. Please check the form for errors.',
+          type: 'is-danger',
+        })
+        this.errors = error.response.data
+      } else {
+        this.$buefy.toast.open({
+          message: error.response.data.detail,
+          type: 'is-danger',
+        })
       }
     },
   },

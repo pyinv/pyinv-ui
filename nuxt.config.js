@@ -37,6 +37,7 @@ export default {
     '~/components/assets/',
     '~/components/manufacturers/',
     '~/components/nodes/',
+    '~/components/settings/',
   ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
