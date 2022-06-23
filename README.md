@@ -1,4 +1,8 @@
-# pyinv-ui
+# PyInv Web Interface
+
+This is the web interface for PyInv, a SPA that communicates with [pyinv-server](https://github.com/pyinv/pyinv-server) over a REST API.
+
+You can set the URL of the API using the `API_URL` environment variable.
 
 ## Build Setup
 
