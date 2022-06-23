@@ -121,7 +121,6 @@ export default {
      */
     onPageChange(page) {
       this.page = page
-      console.log(page)
       this.loadAsyncData()
     },
     /*

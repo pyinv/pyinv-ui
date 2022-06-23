@@ -7,7 +7,11 @@
           <p class="modal-card-title">Create New Asset Model</p>
         </header>
         <section class="modal-card-body">
-          <b-field label="Name">
+          <b-field
+            label="Name"
+            :type="{ 'is-danger': errors.name }"
+            :message="errors.name"
+          >
             <b-input v-model="model.name"></b-input>
           </b-field>
           <b-field
@@ -16,23 +20,11 @@
           >
             <b-input v-model="model.slug"></b-input>
           </b-field>
-
-          <b-field label="Manufacturer">
-            <b-select
-              placeholder="Select a manufacturer"
-              v-model="model.manufacturer_slug"
-              :loading="manufacturers == null"
-            >
-              <option
-                v-for="manufacturer in manufacturers"
-                :value="manufacturer.slug"
-                :key="manufacturer.slug"
-              >
-                {{ manufacturer.name }}
-              </option>
-            </b-select>
-            <manufacturer-create-modal text="+" />
-          </b-field>
+          <manufacturer-input
+            v-model="model.manufacturer_slug"
+            :type="{ 'is-danger': errors.name }"
+            :message="errors.name"
+          />
           <b-field label="Can Contain Assets">
             <b-switch v-model="model.is_container"></b-switch>
           </b-field>
@@ -61,32 +53,20 @@ export default {
         name: '',
         slug: null,
         manufacturer_slug: null,
-        is_container: null,
+        is_container: false,
       },
       modal: false,
-      manufacturers: null,
     }
   },
   methods: {
-    async fetch() {
-      try {
-        let resp = await this.$axios.get('/manufacturers/?ordering=name')
-        this.manufacturers = resp.data.results // TODO: Handle pagination correctly!
-      } catch (error) {
-        this.$buefy.toast.open({
-          message: error.message,
-          type: 'is-danger',
-        })
-      }
-    },
     async submit() {
       try {
-        let resp = await this.$axios.post(`/manufacturers/`, this.manufacturer)
+        let resp = await this.$axios.post(`/asset-models/`, this.model)
         this.$buefy.toast.open({
-          message: 'Created new Manufacturer.',
+          message: 'Created new Asset Model.',
           type: 'is-success',
         })
-        this.$emit('manufacturerCreated', resp.data.slug)
+        this.$emit('modelCreated', resp.data.slug)
         this.modal = false
       } catch (error) {
         if (error.response) {
@@ -103,7 +83,7 @@ export default {
       if (error.response.status == 400) {
         this.$buefy.toast.open({
           message:
-            'Unable to create Manufacturer. Please check the form for errors.',
+            'Unable to create Asset Model. Please check the form for errors.',
           type: 'is-danger',
         })
         this.errors = error.response.data

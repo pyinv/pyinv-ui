@@ -6,7 +6,9 @@
 </template>
 
 <script>
+import ManufacturerInput from '~/components/manufacturers/ManufacturerInput.vue'
 export default {
+  components: { ManufacturerInput },
   head: {
     title: 'Assets | PyInv',
   },
