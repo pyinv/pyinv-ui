@@ -1,6 +1,7 @@
 <template>
   <section>
     <b-table
+      v-if="data.length > 0"
       :data="data"
       :loading="loading"
       :total="total"
@@ -39,6 +40,9 @@
         >
       </b-table-column>
     </b-table>
+    <b-message v-else type="is-danger" has-icon icon-size="small">
+      No manufacturers found.
+    </b-message>
   </section>
 </template>
 
