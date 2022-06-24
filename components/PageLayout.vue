@@ -9,6 +9,7 @@
       <div class="columns">
         <div class="column is-three-quarters">
           <h1 class="title is-1"><slot name="pre-title" />{{ title }}</h1>
+          <p class="subtitle" v-if="subtitle">{{ subtitle }}</p>
         </div>
         <div class="column"><slot name="buttons" /></div>
       </div>
@@ -25,6 +26,9 @@ export default {
     title: {
       type: String,
       required: true,
+    },
+    subtitle: {
+      type: String,
     },
   },
 }
