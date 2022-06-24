@@ -1,10 +1,10 @@
 <template>
-  <section class="section">
-    <h1 class="title is-1">
-      {{ asset.first_asset_code }}: {{ asset.asset_model.name }}
-    </h1>
-    {{ asset.state }}
-  </section>
+  <page-layout :title="`${asset.first_asset_code}: ${asset.asset_model.name}`">
+    <template #breadcrumbs>Breadcrumbs Not Implemented</template>
+    <template #content>
+      {{ asset.state }}
+    </template>
+  </page-layout>
 </template>
 
 <script>
