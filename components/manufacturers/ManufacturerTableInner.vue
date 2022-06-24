@@ -1,7 +1,7 @@
 <template>
   <section>
     <b-table
-      v-if="data.length > 0"
+      v-if="data.length > 0 || loading"
       :data="data"
       :loading="loading"
       :total="total"
