@@ -1,20 +1,18 @@
 <template>
-  <section>
-    <b-breadcrumb :align="align" :size="size">
-      <b-breadcrumb-item tag="router-link" :to="{ name: 'models' }"
-        >Asset Models</b-breadcrumb-item
+  <b-breadcrumb :align="align" :size="size">
+    <b-breadcrumb-item tag="router-link" :to="{ name: 'models' }"
+      >Asset Models</b-breadcrumb-item
+    >
+    <template v-if="action">
+      <b-breadcrumb-item
+        tag="router-link"
+        :to="{ name: 'models-slug', params: { slug: model.slug } }"
+        >{{ model.name }}</b-breadcrumb-item
       >
-      <template v-if="action">
-        <b-breadcrumb-item
-          tag="router-link"
-          :to="{ name: 'models-slug', params: { slug: model.slug } }"
-          >{{ model.name }}</b-breadcrumb-item
-        >
-        <b-breadcrumb-item active>{{ action }}</b-breadcrumb-item>
-      </template>
-      <b-breadcrumb-item v-else active>{{ model.name }}</b-breadcrumb-item>
-    </b-breadcrumb>
-  </section>
+      <b-breadcrumb-item active>{{ action }}</b-breadcrumb-item>
+    </template>
+    <b-breadcrumb-item v-else active>{{ model.name }}</b-breadcrumb-item>
+  </b-breadcrumb>
 </template>
 
 <script>
