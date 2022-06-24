@@ -1,12 +1,20 @@
 <template>
-  <section class="section">
-    <h1 class="title is-1">
-      {{ manufacturer.name }}
-    </h1>
-    <manufacturer-link :manufacturer="manufacturer" text="Edit" action="edit" />
-    <manufacturer-delete-button :manufacturer="manufacturer" />
-    <asset-model-table :manufacturer="manufacturer" />
-  </section>
+  <page-layout :title="manufacturer.name">
+    <template #breadcrumbs>
+      <manufacturer-breadcrumbs :manufacturer="manufacturer" />
+    </template>
+    <template #buttons>
+      <manufacturer-link
+        :manufacturer="manufacturer"
+        text="Edit"
+        action="edit"
+      />
+      <manufacturer-delete-button :manufacturer="manufacturer" />
+    </template>
+    <template #content>
+      <asset-model-table :manufacturer="manufacturer" />
+    </template>
+  </page-layout>
 </template>
 
 <script>
