@@ -1,6 +1,11 @@
 <template>
   <div>
-    <b-button @click="modal = true" class="is-success">{{ text }}</b-button>
+    <b-button
+      @click="modal = true"
+      class="is-success"
+      :disabled="$auth.loggedIn == false"
+      >{{ text }}</b-button
+    >
     <b-modal v-model="modal" trap-focus has-modal-card>
       <div class="modal-card" style="width: auto">
         <header class="modal-card-head">
