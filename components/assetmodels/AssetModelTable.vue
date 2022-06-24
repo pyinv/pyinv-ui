@@ -22,7 +22,10 @@
       </b-table-column>
 
       <b-table-column field="manufacturer" label="Manufacturer" v-slot="props">
-        <manufacturer-link-text :manufacturer="props.row.manufacturer" />
+        <manufacturer-link
+          :manufacturer="props.row.manufacturer"
+          :button="false"
+        />
       </b-table-column>
 
       <b-table-column
