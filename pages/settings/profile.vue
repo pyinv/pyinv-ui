@@ -1,7 +1,8 @@
 <template>
-  <section class="section">
-    <h1 class="title is-2">My Profile</h1>
-    <p class="subtitle">View and update your profile information.</p>
+  <settings-layout
+    title="My Profile"
+    subtitle="View and update your profile information."
+  >
     <b-field
       label="Username"
       :type="{ 'is-danger': errors.username }"
@@ -16,13 +17,12 @@
       <b-input v-model="profile.last_name"></b-input>
     </b-field>
     <b-button @click="submit" type="is-primary">Update Profile</b-button>
-  </section>
+  </settings-layout>
 </template>
 
 <script>
 export default {
   middleware: ['auth'],
-  layout: 'settings',
   head: {
     title: 'My Profile | PyInv',
   },
