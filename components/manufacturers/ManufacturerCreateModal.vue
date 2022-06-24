@@ -57,6 +57,11 @@ export default {
           type: 'is-success',
         })
         this.$emit('manufacturerCreated', resp.data.slug)
+        this.errors = {}
+        this.manufacturer = {
+          name: '',
+          slug: null,
+        }
         this.modal = false
       } catch (error) {
         if (error.response) {
