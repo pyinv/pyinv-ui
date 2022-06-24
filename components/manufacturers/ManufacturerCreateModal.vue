@@ -35,7 +35,7 @@ export default {
   props: {
     text: {
       type: String,
-      default: 'Create Manufacturer',
+      default: 'Create',
     },
   },
   data() {
