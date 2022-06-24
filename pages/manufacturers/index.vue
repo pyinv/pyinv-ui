@@ -1,8 +1,9 @@
 <template>
-  <section class="section">
-    <h1 class="title is-1">Manufacturers</h1>
-    <manufacturer-table-with-search-filters />
-  </section>
+  <page-layout title="Manufacturers">
+    <template #content>
+      <manufacturer-table-with-search-filters />
+    </template>
+  </page-layout>
 </template>
 
 <script>

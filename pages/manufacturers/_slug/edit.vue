@@ -1,9 +1,15 @@
 <template>
-  <section class="section">
-    <manufacturer-breadcrumbs :manufacturer="manufacturer" action="Edit" />
-    <h1 class="title is-1">Editing: {{ manufacturer.name }}</h1>
-    <manufacturer-edit-form @success="submitted" :manufacturer="manufacturer" />
-  </section>
+  <page-layout :title="`Editing: ${manufacturer.name}`">
+    <template #breadcrumbs>
+      <manufacturer-breadcrumbs :manufacturer="manufacturer" action="Edit" />
+    </template>
+    <template #content>
+      <manufacturer-edit-form
+        @success="submitted"
+        :manufacturer="manufacturer"
+      />
+    </template>
+  </page-layout>
 </template>
 
 <script>
