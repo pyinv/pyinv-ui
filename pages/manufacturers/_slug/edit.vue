@@ -1,7 +1,7 @@
 <template>
   <section class="section">
+    <manufacturer-breadcrumbs :manufacturer="manufacturer" action="Edit" />
     <h1 class="title is-1">Editing: {{ manufacturer.name }}</h1>
-    <manufacturer-link :manufacturer="manufacturer" text="Back" />
     <manufacturer-edit-form @success="submitted" :manufacturer="manufacturer" />
   </section>
 </template>

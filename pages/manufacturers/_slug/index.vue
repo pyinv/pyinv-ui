@@ -1,5 +1,6 @@
 <template>
   <section class="section">
+    <manufacturer-breadcrumbs :manufacturer="manufacturer" />
     <h1 class="title is-1">
       {{ manufacturer.name }}
     </h1>
