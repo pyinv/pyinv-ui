@@ -1,6 +1,8 @@
 <template>
   <b-breadcrumb :align="this.align">
-    <b-breadcrumb-item tag="router-link" :to="{name: 'nodes'}">Assets</b-breadcrumb-item>
+    <b-breadcrumb-item tag="router-link" :to="{ name: 'nodes' }"
+      >Assets</b-breadcrumb-item
+    >
     <b-breadcrumb-item
       v-for="ancestor in node.ancestors"
       :key="ancestor.id"
