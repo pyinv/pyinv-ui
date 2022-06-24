@@ -8,7 +8,7 @@
               type="text"
               v-model="search"
               placeholder="Find a manufacturer"
-              @keyup.enter="refresh"
+              @keyup.native.enter="refresh"
             />
           </div>
           <div class="control">
