@@ -3,7 +3,7 @@
     <h1 class="title is-1">
       {{ manufacturer.name }}
     </h1>
-    <manufacturer-edit-link-button :manufacturer="manufacturer" />
+    <manufacturer-link :manufacturer="manufacturer" text="Edit" action="edit" />
     <manufacturer-delete-button :manufacturer="manufacturer" />
     <asset-model-table :manufacturer="manufacturer" />
   </section>

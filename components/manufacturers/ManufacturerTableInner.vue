@@ -15,29 +15,21 @@
       @sort="onSort"
     >
       <b-table-column field="name" label="Name" sortable v-slot="props">
-        <router-link
-          :to="{ name: 'manufacturers-slug', params: { slug: props.row.slug } }"
-        >
-          {{ props.row.name }}
-        </router-link>
+        <manufacturer-link :manufacturer="props.row" :button="false" />
       </b-table-column>
 
       <b-table-column label="Actions" v-slot="props">
-        <b-button
+        <manufacturer-link
+          :manufacturer="props.row"
+          text="View"
           size="is-small"
-          tag="router-link"
-          :to="{ name: 'manufacturers-slug', params: { slug: props.row.slug } }"
-          >View</b-button
-        >
-        <b-button
+        />
+        <manufacturer-link
+          :manufacturer="props.row"
+          text="Edit"
           size="is-small"
-          tag="router-link"
-          :to="{
-            name: 'manufacturers-slug-edit',
-            params: { slug: props.row.slug },
-          }"
-          >Edit</b-button
-        >
+          action="edit"
+        />
       </b-table-column>
     </b-table>
     <b-message v-else type="is-danger" has-icon icon-size="small">
@@ -47,7 +39,9 @@
 </template>
 
 <script>
+import ManufacturerLink from './ManufacturerLink.vue'
 export default {
+  components: { ManufacturerLink },
   props: {
     data: {
       type: Array,
