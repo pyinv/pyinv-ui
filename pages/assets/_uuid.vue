@@ -2,7 +2,7 @@
   <page-layout :title="`${asset.first_asset_code}: ${asset.asset_model.name}`">
     <template #breadcrumbs><asset-breadcrumbs :asset="asset" /></template>
     <template #content>
-      {{ asset.state }}
+      <asset-info :asset="asset" />
     </template>
   </page-layout>
 </template>
