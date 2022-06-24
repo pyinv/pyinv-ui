@@ -1,13 +1,16 @@
 <template>
-  <section class="section">
-    <h1 class="title is-1">
-      {{ assetModel.name }}
-    </h1>
-    <asset-model-breadcrumbs :model="assetModel" />
-    <asset-model-edit-button :model="assetModel" />
-    <asset-model-delete-button :model="assetModel" />
-    <asset-table :model="assetModel.slug" />
-  </section>
+  <page-layout :title="assetModel.name">
+    <template #breadcrumbs>
+      <asset-model-breadcrumbs :model="assetModel" />
+    </template>
+    <template #buttons>
+      <asset-model-edit-button :model="assetModel" />
+      <asset-model-delete-button :model="assetModel" />
+    </template>
+    <template #content>
+      <asset-table :model="assetModel.slug" />
+    </template>
+  </page-layout>
 </template>
 
 <script>

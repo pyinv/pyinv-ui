@@ -1,12 +1,12 @@
 <template>
-  <section class="section">
-    <h1 class="title is-1">
-      <node-icon :node="node" />&nbsp;{{ node.display_name }}
-    </h1>
-    <node-breadcrumbs :node="node" />
-    <node-info :node="node" />
-    <node-table v-if="node.numchild > 0" :parent="node.id" />
-  </section>
+  <page-layout :title="node.display_name">
+    <template #pre-title><node-icon :node="node" />&nbsp;</template>
+    <template #content>
+      <node-info :node="node" />
+      <node-table v-if="node.numchild > 0" :parent="node.id" />
+    </template>
+    <template #breadcrumbs><node-breadcrumbs :node="node" /></template>
+  </page-layout>
 </template>
 
 <script>
