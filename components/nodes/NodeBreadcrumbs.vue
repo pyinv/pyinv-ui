@@ -3,8 +3,9 @@
     <b-breadcrumb-item tag="router-link" :to="{ name: 'nodes' }"
       >Assets</b-breadcrumb-item
     >
+    <b-breadcrumb-item v-if="!node.ancestors">...</b-breadcrumb-item>
     <b-breadcrumb-item
-      v-for="ancestor in node.ancestors"
+      v-for="ancestor in ancestors"
       :key="ancestor.id"
       tag="router-link"
       :to="{ name: 'nodes-uuid', params: { uuid: ancestor.id } }"
@@ -21,17 +22,28 @@
 </template>
 
 <script>
-import NodeIcon from './NodeIcon.vue'
 export default {
-  components: { NodeIcon },
   props: {
     node: {
       type: Object,
       required: true,
     },
+    parent: {
+      type: Object,
+    },
     align: {
       type: String,
       default: 'is-left',
+    },
+  },
+  computed: {
+    ancestors() {
+      // Check if we have information about the ancestors.
+      if (this.node.ancestors) {
+        return this.node.ancestors
+      } else {
+        return [this.node.parent]
+      }
     },
   },
 }
