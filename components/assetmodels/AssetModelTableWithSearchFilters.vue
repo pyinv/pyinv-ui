@@ -1,24 +1,34 @@
 <template>
-  <asset-model-table-inner
-    :data="data"
-    :total="total"
-    :loading="loading"
-    :sortString="sortString"
-    :perPage="perPage"
-    :currentPage="currentPage"
-    @onPageChange="onPageChange"
-    @onSort="onSort"
-  />
+  <section>
+    <div class="field has-addons">
+      <div class="control is-expanded">
+        <b-input
+          type="text"
+          v-model="search"
+          placeholder="Find an asset model"
+          @keyup.native.enter="refresh"
+        />
+      </div>
+      <div class="control">
+        <b-button type="is-info" @click="refresh"> Search </b-button>
+      </div>
+    </div>
+    <asset-model-table-inner
+      :data="data"
+      :total="total"
+      :loading="loading"
+      :sortString="sortString"
+      :perPage="perPage"
+      :currentPage="currentPage"
+      @onPageChange="onPageChange"
+      @onSort="onSort"
+    />
+  </section>
 </template>
 
 <script>
 export default {
   props: {
-    manufacturer: {
-      type: Object,
-      required: false,
-      default: null,
-    },
     perPage: {
       type: Number,
       default: 25,
@@ -31,6 +41,7 @@ export default {
       loading: false,
       sortString: 'name',
       currentPage: 1,
+      search: null,
     }
   },
   async fetch() {
@@ -41,9 +52,10 @@ export default {
           limit: this.perPage,
           offset: (this.currentPage - 1) * this.perPage,
           ordering: this.sortString,
+          search: this.search,
 
           // Filters
-          manufacturer: this.manufacturer ? this.manufacturer.slug : null,
+          // manufacturer: this.manufacturer ? this.manufacturer.slug : null,
         },
       })
       this.data = resp.data.results
@@ -59,10 +71,13 @@ export default {
   methods: {
     onPageChange(page) {
       this.currentPage = page
-      this.$fetch()
+      this.refresh()
     },
     onSort(sortString) {
       this.sortString = sortString
+      this.refresh()
+    },
+    refresh() {
       this.$fetch()
     },
   },

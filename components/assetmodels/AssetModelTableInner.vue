@@ -11,21 +11,49 @@
     @onPageChange="onPageChange"
   >
     <b-table-column field="name" label="Name" sortable v-slot="props">
-      <manufacturer-link :manufacturer="props.row" :button="false" />
+      <asset-model-link-text :model="props.row" />
+    </b-table-column>
+
+    <b-table-column field="manufacturer" label="Manufacturer" v-slot="props">
+      <manufacturer-link
+        :manufacturer="props.row.manufacturer"
+        :button="false"
+      />
+    </b-table-column>
+
+    <b-table-column
+      field="is_container"
+      label="Can Contain Items"
+      v-slot="props"
+    >
+      {{ props.row.is_container ? 'Yes' : 'No' }}
+    </b-table-column>
+
+    <b-table-column
+      field="asset_count"
+      label="Number of Assets"
+      sortable
+      v-slot="props"
+    >
+      {{ props.row.asset_count }}
     </b-table-column>
 
     <b-table-column label="Actions" v-slot="props">
-      <manufacturer-link
-        :manufacturer="props.row"
-        text="View"
+      <b-button
         size="is-small"
-      />
-      <manufacturer-link
-        :manufacturer="props.row"
-        text="Edit"
+        tag="router-link"
+        :to="{ name: 'models-slug', params: { slug: props.row.slug } }"
+        >View</b-button
+      >
+      <b-button
         size="is-small"
-        action="edit"
-      />
+        tag="router-link"
+        :to="{
+          name: 'models-slug-edit',
+          params: { slug: props.row.slug },
+        }"
+        >Edit</b-button
+      >
     </b-table-column>
   </table-inner>
 </template>
