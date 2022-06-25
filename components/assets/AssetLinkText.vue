@@ -4,7 +4,7 @@
     size="is-small"
   >
     <b-icon v-if="icon" icon="cube-outline" size="is-small" />{{
-      text || asset.first_asset_code
+      text || asset.display_name
     }}
   </router-link>
 </template>
