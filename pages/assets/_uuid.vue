@@ -1,5 +1,5 @@
 <template>
-  <page-layout :title="`${asset.first_asset_code}: ${asset.asset_model.name}`">
+  <page-layout :title="asset.display_name">
     <template #breadcrumbs><asset-breadcrumbs :asset="asset" /></template>
     <template #content>
       <asset-info :asset="asset" />
