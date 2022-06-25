@@ -1,5 +1,6 @@
 <template>
   <div class="box">
+    <h4 class="title is-4">Asset Information</h4>
     <div class="columns has-text-centered">
       <div class="column">
         <h5 class="title is-5">Asset Model</h5>
