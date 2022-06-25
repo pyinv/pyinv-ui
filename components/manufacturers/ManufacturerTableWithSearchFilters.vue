@@ -1,26 +1,18 @@
 <template>
   <section>
-    <div class="columns">
-      <div class="column is-three-quarters">
-        <div class="field has-addons">
-          <div class="control is-expanded">
-            <b-input
-              type="text"
-              v-model="search"
-              placeholder="Find a manufacturer"
-              @keyup.native.enter="refresh"
-            />
-          </div>
-          <div class="control">
-            <b-button type="is-info" @click="refresh"> Search </b-button>
-          </div>
-        </div>
+    <div class="field has-addons">
+      <div class="control is-expanded">
+        <b-input
+          type="text"
+          v-model="search"
+          placeholder="Find a manufacturer"
+          @keyup.native.enter="refresh"
+        />
       </div>
-      <div class="column">
-        <manufacturer-create-modal @manufacturerCreated="manufacturerCreated" />
+      <div class="control">
+        <b-button type="is-info" @click="refresh"> Search </b-button>
       </div>
     </div>
-
     <manufacturer-table-inner
       :data="data"
       :total="total"
@@ -84,9 +76,6 @@ export default {
     },
     refresh() {
       this.$fetch()
-    },
-    manufacturerCreated() {
-      this.refresh()
     },
   },
 }
