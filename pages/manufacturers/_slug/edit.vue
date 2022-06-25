@@ -15,6 +15,11 @@
 <script>
 export default {
   middleware: ['auth'],
+  head() {
+    return {
+      title: `Editing: ${this.manufacturer.name} | PyInv`,
+    }
+  },
   async asyncData({ $axios, params }) {
     const manufacturer = await $axios.$get('manufacturers/' + params.slug)
     return { manufacturer }

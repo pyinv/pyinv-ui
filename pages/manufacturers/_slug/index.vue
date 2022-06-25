@@ -19,6 +19,11 @@
 
 <script>
 export default {
+  head() {
+    return {
+      title: `${this.manufacturer.name} | PyInv`,
+    }
+  },
   async asyncData({ $axios, params }) {
     const manufacturer = await $axios.$get('manufacturers/' + params.slug)
     return { manufacturer }

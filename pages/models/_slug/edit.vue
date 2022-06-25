@@ -9,6 +9,11 @@
 <script>
 export default {
   middleware: ['auth'],
+  head() {
+    return {
+      title: `Editing: ${this.model.name} | PyInv`,
+    }
+  },
   async asyncData({ $axios, params }) {
     const model = await $axios.$get(`asset-models/${params.slug}/`)
     return { model }

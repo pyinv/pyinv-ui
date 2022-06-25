@@ -8,9 +8,12 @@
 </template>
 
 <script>
-import AssetBreadcrumbs from '~/components/assets/AssetBreadcrumbs.vue'
 export default {
-  components: { AssetBreadcrumbs },
+  head() {
+    return {
+      title: `${this.asset.display_name} | PyInv`,
+    }
+  },
   async asyncData({ $axios, params, redirect }) {
     const asset = await $axios.$get('assets/' + params.uuid)
     if (asset.node && asset.node.numchild != 0) {

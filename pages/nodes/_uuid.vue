@@ -15,6 +15,11 @@
 
 <script>
 export default {
+  head() {
+    return {
+      title: `${this.node.display_name} | PyInv`,
+    }
+  },
   async asyncData({ $axios, params, redirect }) {
     const node = await $axios.$get('nodes/' + params.uuid)
     if (node.node_type == 'A' && node.numchild == 0) {
