@@ -15,6 +15,11 @@
 
 <script>
 export default {
+  head() {
+    return {
+      title: `${this.assetModel.name} | PyInv`,
+    }
+  },
   async asyncData({ $axios, params }) {
     const assetModel = await $axios.$get('asset-models/' + params.slug)
     return { assetModel }
