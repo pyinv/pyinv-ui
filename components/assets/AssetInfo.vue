@@ -10,7 +10,7 @@
       </div>
       <div class="column">
         <h5 class="title is-5">State</h5>
-        <p>{{ asset.state }}</p>
+        <p><asset-state-string :state="asset.state" /></p>
         <h5 class="title is-5">Last Updated</h5>
         <p>{{ asset.updated_at }}</p>
       </div>
