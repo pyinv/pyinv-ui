@@ -11,7 +11,7 @@
       </div>
       <div class="column">
         <h5 class="title is-5">Type</h5>
-        <p>{{ node.node_type }}</p>
+        <p><node-type :node="node" /></p>
       </div>
     </div>
   </div>
@@ -19,8 +19,9 @@
 
 <script>
 import NodeLinkText from './NodeLinkText.vue'
+import NodeType from './NodeType.vue'
 export default {
-  components: { NodeLinkText },
+  components: { NodeLinkText, NodeType },
   props: {
     node: {
       type: Object,
