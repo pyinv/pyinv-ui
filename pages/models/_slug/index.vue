@@ -4,8 +4,8 @@
       <asset-model-breadcrumbs :model="assetModel" />
     </template>
     <template #buttons>
-      <asset-model-edit-button :model="assetModel" />
-      <asset-model-delete-button :model="assetModel" />
+      <asset-model-edit-button :model="assetModel" text="Edit" />
+      <asset-model-delete-button :model="assetModel" text="Delete" />
     </template>
     <template #content>
       <asset-table :model="assetModel.slug" />
