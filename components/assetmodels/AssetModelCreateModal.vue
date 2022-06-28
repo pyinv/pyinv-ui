@@ -1,6 +1,11 @@
 <template>
   <div>
-    <b-button @click="modal = true" class="is-success">{{ text }}</b-button>
+    <b-button
+      @click="modal = true"
+      :disabled="$auth.loggedIn == false"
+      class="is-success"
+      >{{ text }}</b-button
+    >
     <b-modal v-model="modal" trap-focus has-modal-card>
       <div class="modal-card" style="width: auto">
         <header class="modal-card-head">
@@ -43,7 +48,7 @@ export default {
   props: {
     text: {
       type: String,
-      default: 'Create Asset Model',
+      default: 'Create',
     },
   },
   data() {
