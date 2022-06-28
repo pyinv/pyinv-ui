@@ -24,7 +24,7 @@
           :text="props.row.display_name"
           icon
         />
-        <node-link-text v-else :node="props.row" />
+        <node-link v-else :node="props.row" :button="false" />
       </b-table-column>
 
       <b-table-column
@@ -58,7 +58,7 @@
           :asset="props.row.asset"
           text="View"
         />
-        <node-link-button v-else :node="props.row" text="View" />
+        <node-link v-else :node="props.row" text="View" size="is-small" />
       </b-table-column>
     </b-table>
   </section>

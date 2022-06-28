@@ -39,8 +39,9 @@
         label="Location"
         v-slot="props"
       >
-        <node-link-text
+        <node-link
           v-if="props.row.node && props.row.node.parent"
+          :button="false"
           :node="props.row.node.parent"
         />
         <template v-else>N/A</template>
@@ -56,7 +57,7 @@
       </b-table-column>
 
       <b-table-column label="Actions" v-slot="props">
-        <node-link-button
+        <node-link
           v-if="props.row.node && props.row.node.numchild > 0"
           :node="props.row.node"
           text="View"

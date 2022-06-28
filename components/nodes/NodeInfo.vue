@@ -5,7 +5,7 @@
       <div class="column">
         <h5 class="title is-5">Location</h5>
         <p v-if="node.ancestors && node.ancestors[0]">
-          <node-link-text :node="node.ancestors[0]" />
+          <node-link :node="node.ancestors[0]" :button="false" />
         </p>
         <p v-else>N/A</p>
       </div>
@@ -18,10 +18,7 @@
 </template>
 
 <script>
-import NodeLinkText from './NodeLinkText.vue'
-import NodeType from './NodeType.vue'
 export default {
-  components: { NodeLinkText, NodeType },
   props: {
     node: {
       type: Object,
