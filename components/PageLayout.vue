@@ -7,7 +7,7 @@
         </b-breadcrumb>
       </slot>
       <div class="columns">
-        <div class="column is-three-quarters">
+        <div class="column is-two-thirds">
           <h1 class="title is-1"><slot name="pre-title" />{{ title }}</h1>
           <p class="subtitle" v-if="subtitle">{{ subtitle }}</p>
         </div>

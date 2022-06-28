@@ -1,6 +1,16 @@
 <template>
   <page-layout :title="node.display_name">
     <template #pre-title><node-icon :node="node" />&nbsp;</template>
+    <template #buttons>
+      <placeholder-button
+        v-if="!node.asset"
+        type="is-success"
+        text="New Location"
+      />
+      <placeholder-button text="Edit" type="is-primary" />
+      <placeholder-button text="Move Here" type="is-info" />
+      <placeholder-button text="Delete" type="is-danger" />
+    </template>
     <template #content>
       <node-info :node="node" />
       <asset-info v-if="node.asset" :asset="node.asset" />
