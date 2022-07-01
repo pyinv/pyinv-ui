@@ -29,10 +29,6 @@
         <asset-model-link-text :model="props.row.asset_model" />
       </b-table-column>
 
-      <b-table-column field="state" label="State" v-slot="props">
-        <asset-state-string :state="props.row.state" />
-      </b-table-column>
-
       <b-table-column
         v-if="showLocationColumn"
         field="node"
@@ -69,17 +65,15 @@
 </template>
 
 <script>
-import AssetStateString from './AssetStateString.vue'
 export default {
-  components: { AssetStateString },
   props: {
     perPage: {
       type: Number,
       default: 25,
     },
-    state: {
-      type: String,
-      default: '',
+    hasNode: {
+      type: Boolean,
+      default: null,
     },
     model: {
       type: String,
@@ -105,18 +99,15 @@ export default {
      */
     async loadAsyncData() {
       this.loading = true
-      var params = new URLSearchParams({
-        asset_model: this.model,
-        limit: this.perPage,
-        offset: (this.page - 1) * this.perPage,
-        ordering: this.sortString,
-      })
-      for (let c of this.state.split('')) {
-        params.append('state', c)
-      }
       await this.$axios
         .get('/assets/', {
-          params: params,
+          params: {
+            asset_model: this.model,
+            limit: this.perPage,
+            offset: (this.page - 1) * this.perPage,
+            ordering: this.sortString,
+            has_node: this.hasNode,
+          },
         })
         .then((response) => {
           this.data = response.data.results
