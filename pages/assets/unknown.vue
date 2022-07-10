@@ -5,7 +5,7 @@
       disposed."
   >
     <template #content>
-      <asset-table state="DL" :showLocationColumn="false" />
+      <asset-table :hasNode="false" :showLocationColumn="false" />
     </template>
   </page-layout>
 </template>
