@@ -10,10 +10,25 @@
     >
       <b-input v-model="profile.username"></b-input>
     </b-field>
-    <b-field label="First Name">
+    <b-field
+      label="Email Address"
+      :type="{ 'is-danger': errors.email }"
+      :message="errors.email"
+    >
+      <b-input v-model="profile.email" type="email"></b-input>
+    </b-field>
+    <b-field
+      label="First Name"
+      :type="{ 'is-danger': errors.first_name }"
+      :message="errors.first_name"
+    >
       <b-input v-model="profile.first_name"></b-input>
     </b-field>
-    <b-field label="Last Name">
+    <b-field
+      label="Last Name"
+      :type="{ 'is-danger': errors.last_name }"
+      :message="errors.last_name"
+    >
       <b-input v-model="profile.last_name"></b-input>
     </b-field>
     <b-button @click="submit" type="is-primary">Update Profile</b-button>
@@ -44,6 +59,7 @@ export default {
           message: 'Updated successfully.',
           type: 'is-success',
         })
+        this.errors = {}
       } catch (error) {
         if (error.response) {
           this.handleError(error)

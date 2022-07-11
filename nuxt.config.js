@@ -67,7 +67,7 @@ export default {
         refreshToken: {
           property: 'refresh',
           data: 'refresh',
-          maxAge: 60 * 60 * 24 * 30,
+          maxAge: 60 * 60 * 24 * 60,
         },
         user: {
           property: false,
@@ -75,11 +75,11 @@ export default {
         },
         endpoints: {
           login: { url: '/auth/token/', method: 'post' },
-          refresh: { url: '/auth/refresh', method: 'post' },
+          refresh: { url: '/auth/token/refresh/', method: 'post' },
           user: { url: '/accounts/profile/', method: 'get' },
           logout: false,
         },
-        autoLogout: true,
+        autoLogout: false,
         redirect: {
           login: '/login',
           logout: '/',
