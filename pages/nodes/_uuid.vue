@@ -13,11 +13,20 @@
     </template>
     <template #content>
       <node-info :node="node" />
-      <asset-info v-if="node.asset" :asset="node.asset" />
-      <div class="box" v-if="node.numchild > 0">
-        <h4 class="title is-4">Contents</h4>
-        <node-table :parent="node.id" />
-      </div>
+      <b-tabs>
+        <b-tab-item label="Contents" v-if="node.numchild > 0">
+          <div class="box">
+            <h4 class="title is-4">Contents</h4>
+            <node-table :parent="node.id" />
+          </div>
+        </b-tab-item>
+        <b-tab-item label="Asset" v-if="node.asset">
+          <asset-info :asset="node.asset" />
+        </b-tab-item>
+        <b-tab-item label="Timeline" v-if="node.asset">
+          <timeline :asset="node.asset" />
+        </b-tab-item>
+      </b-tabs>
     </template>
     <template #breadcrumbs><node-breadcrumbs :node="node" /></template>
   </page-layout>
