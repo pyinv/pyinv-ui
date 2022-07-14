@@ -2,16 +2,20 @@
   <div class="card">
     <header class="card-header">
       <p class="card-header-title">
-        Created by {{ event.changeset.user.display_name }} @
-        {{ event.changeset.timestamp }}
+        <router-link
+          :to="{
+            name: 'changesets-uuid',
+            params: { uuid: event.changeset.id },
+          }"
+          ><event-type :event_type="event.event_type" /> by
+          {{ event.changeset.user.display_name }} @
+          {{ event.changeset.timestamp }}</router-link
+        >
       </p>
     </header>
     <div class="card-content">
       <div class="content">
-        <p>
-          Created with initial location
-          {{ event.event_data.location | formatLocation }} .
-        </p>
+        <event-data :data="event.event_data" :event_type="event.event_type" />
         <pre>{{ event.changeset.comment }}</pre>
       </div>
     </div>
@@ -19,7 +23,10 @@
 </template>
 
 <script>
+import EventData from './EventData.vue'
+import EventType from './EventType.vue'
 export default {
+  components: { EventType, EventData },
   props: {
     event: {
       type: Object,

@@ -11,7 +11,11 @@
     <div v-else>
       <b-loading :is-full-page="false" v-model="loading"></b-loading>
       <div v-if="loading || total > 0">
-        <asset-event v-for="event in data" :event="event" :key="event.id" />
+        <asset-event-card
+          v-for="event in data"
+          :event="event"
+          :key="event.id"
+        />
         <b-pagination
           :total="total"
           v-model="currentPage"
@@ -51,7 +55,7 @@ export default {
     this.loading = true
     if (this.$auth.loggedIn) {
       try {
-        let resp = await this.$axios.get('/asset-events/', {
+        let resp = await this.$axios.get(`/asset-events/`, {
           params: {
             limit: this.perPage,
             offset: (this.currentPage - 1) * this.perPage,

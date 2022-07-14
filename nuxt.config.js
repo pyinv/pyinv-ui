@@ -33,9 +33,10 @@ export default {
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: [
     '~/components/',
-    '~/components/assetevents/',
     '~/components/assetmodels/',
     '~/components/assets/',
+    '~/components/changesets/',
+    '~/components/events/',
     '~/components/manufacturers/',
     '~/components/nodes/',
     '~/components/settings/',
@@ -80,7 +81,7 @@ export default {
           user: { url: '/accounts/profile/', method: 'get' },
           logout: false,
         },
-        autoLogout: false,
+        autoLogout: true,
         redirect: {
           login: '/login',
           logout: '/',
