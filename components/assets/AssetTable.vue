@@ -40,7 +40,7 @@
           :button="false"
           :node="props.row.node.parent"
         />
-        <template v-else>N/A</template>
+        <template v-else>-</template>
       </b-table-column>
 
       <b-table-column

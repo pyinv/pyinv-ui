@@ -14,9 +14,12 @@
       </div>
       <div class="column">
         <h5 class="title is-5">Asset Codes</h5>
-        <ul>
-          <li v-for="code in asset.asset_codes" :key="code">{{ code }}</li>
-        </ul>
+        <b-tag
+          class="asset-code-tag"
+          v-for="code in asset.asset_codes"
+          :key="code"
+          >{{ code }}</b-tag
+        >
       </div>
     </div>
   </div>
@@ -32,3 +35,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+.asset-code-tag {
+  margin: 0.5em;
+}
+</style>

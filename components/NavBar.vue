@@ -19,13 +19,16 @@
         <b-navbar-item tag="router-link" :to="{ name: 'assets-unknown' }">
           Unknown Assets
         </b-navbar-item>
+        <b-navbar-item tag="router-link" :to="{ name: 'changesets' }">
+          Changesets
+        </b-navbar-item>
+        <b-navbar-item tag="router-link" :to="{ name: 'events' }">
+          Events
+        </b-navbar-item>
       </b-navbar-dropdown>
     </template>
 
     <template #end>
-      <b-navbar-item tag="div">
-        <input class="input" type="search" placeholder="Search..." />
-      </b-navbar-item>
       <b-navbar-dropdown
         v-if="$auth.loggedIn"
         :label="$auth.user.first_name || $auth.user.username"

@@ -8,6 +8,11 @@
     </template>
     <template #content>
       <asset-info :asset="asset" />
+      <b-tabs>
+        <b-tab-item label="Timeline">
+          <timeline :asset="asset" />
+        </b-tab-item>
+      </b-tabs>
     </template>
   </page-layout>
 </template>
